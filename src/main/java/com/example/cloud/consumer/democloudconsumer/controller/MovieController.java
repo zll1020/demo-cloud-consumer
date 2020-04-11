@@ -1,6 +1,7 @@
 package com.example.cloud.consumer.democloudconsumer.controller;
 
 import com.example.cloud.consumer.democloudconsumer.entity.User;
+import com.example.cloud.consumer.democloudconsumer.service.UserFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +22,17 @@ public class MovieController {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private UserFeignClient userFeignClient;
+
     @GetMapping("/{id}")
     public User findById(@PathVariable Long id){
         return restTemplate.getForObject("http://user-provider/user/" + id,User.class);
+    }
+
+    @GetMapping("/feign/{id}")
+    public User findByIdFeign(@PathVariable Long id){
+        return userFeignClient.findbyId(id);
     }
 
 }

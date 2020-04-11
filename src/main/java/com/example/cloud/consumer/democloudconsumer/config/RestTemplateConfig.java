@@ -1,5 +1,6 @@
 package com.example.cloud.consumer.democloudconsumer.config;
 
+import com.netflix.discovery.DiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
